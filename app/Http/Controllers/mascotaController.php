@@ -170,7 +170,7 @@ class mascotaController extends Controller
           $data->fallecido = ($request->fallecido) ? '1' : '0';
           $data->donante = ($request->donante) ? '1' : '0';
           $data->reproductor = ($request->reproductor) ? '1' : '0';
-          $data->transfusiones = ($reques t->transfusiones) ? '1' : '0';
+          $data->transfusiones = ($request->transfusiones) ? '1' : '0';
           $data->adopcion = ($request->adopcion) ? '1' : '0';
           $data->agresividad = $request->agresividad;
         
