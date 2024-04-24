@@ -143,12 +143,12 @@ class mascotaController extends Controller
         
          $data = new mascota;
  
-   
+  
           $data -> user_id = $request->userId;
           $data -> id_cliente = $request->id_cliente;
           $data->mascota = $request->mascota;                
           $data->fecha_nacimiento = $request->fecha_nacimiento;
-          $data->anos = $request->edad1;
+          $data->anos = $request->anos;
           $data->meses = $request->meses;
           $data->especie = $request->especie;
           $data->raza = $request->raza;
@@ -161,23 +161,19 @@ class mascotaController extends Controller
           $data->chip = $request->chip;
           $data->preexistencia = $request->preexistencia;
        
-      //  $data->color = $request->color;
+          $data->color = $request->color;
 
-       //   $data->veterinario_remitente = $request->veterinario_remitente;
-       // $data->ultimo_celo = $request->ultimo_celo;
-        $data->pedigree =($request->pedigree) ? '1' : '0';
-        $data->esterilizado = ($request->esterilizado) ? '1' : '0';
-        $data->fallecido = ($request->fallecido) ? '1' : '0';
-        $data->donante = ($request->donante) ? '1' : '0';
-        $data->reproductor = ($request->reproductor) ? '1' : '0';
-        $data->transfusiones = ($request->transfusiones) ? '1' : '0';
-        $data->adopcion = ($request->adopcion) ? '1' : '0';
-       
-   
-   
-
-       // $data->agresividad = $request->agresividad;
-       
+          $data->veterinario_remitente = $request->veterinario_remitente;
+          $data->ultimo_celo = $request->ultimo_celo;
+          $data->pedigree =($request->pedigree) ? '1' : '0';
+          $data->esterilizado = ($request->esterilizado) ? '1' : '0';
+          $data->fallecido = ($request->fallecido) ? '1' : '0';
+          $data->donante = ($request->donante) ? '1' : '0';
+          $data->reproductor = ($request->reproductor) ? '1' : '0';
+          $data->transfusiones = ($reques t->transfusiones) ? '1' : '0';
+          $data->adopcion = ($request->adopcion) ? '1' : '0';
+          $data->agresividad = $request->agresividad;
+        
           
             
           $data->save();

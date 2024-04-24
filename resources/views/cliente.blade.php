@@ -382,7 +382,7 @@ DATATABLE HISTÓRIAS ClÍNICAS
 
                 <div class="form-group">
 
-                  <label for="fecha namcimiento" class="control-label font-weight-normal">fecha nacimiento</label>
+                  <label for="fecha nacimiento" class="control-label font-weight-normal">fecha nacimiento</label>
 
                   <input type="date" class="form-control" id="fecha_nacimiento1" name="fecha_nacimiento1" required >
 
@@ -403,7 +403,7 @@ DATATABLE HISTÓRIAS ClÍNICAS
 
                   <label for="año" class="control-label font-weight-normal">Años</label>
 
-                  <input type="number" id="edad1" name="edad1" class="form-control" required autocomplete="off">
+                  <input type="text" id="anos" name="anos" class="form-control" required autocomplete="off">
 
                   <div class="alert-message" id="anoError"></div>
 
@@ -476,7 +476,7 @@ DATATABLE HISTÓRIAS ClÍNICAS
 
 
 
-              <div class="col-md-3">
+              <div class="col-md-2">
 
                 <div class="form-group">
 
@@ -500,7 +500,7 @@ DATATABLE HISTÓRIAS ClÍNICAS
 
 
 
-              <div class="col-md-3">
+              <div class="col-md-2">
 
                 <div class="form-group">
 
@@ -515,11 +515,29 @@ DATATABLE HISTÓRIAS ClÍNICAS
               </div>
 
 
+
+              <div class="col-md-2">
+
+                  <div class="form-group">
+
+                    <label for="color" class="control-label font-weight-normal">Color</label>
+
+                    <input type="text" name="color" class="form-control" id="color" autocomplete="off">
+
+                    <div class="alert-message" id="colorError"></div>
+
+                  </div>
+
+               </div>
+
+
+
+
               <div class="col-md-2">
 
                 <div class="form-group">
 
-                  <label for="peso" class="control-label font-weight-normal">Peso</label>
+                  <label for="peso" class="control-label font-weight-normal">Peso (Kg)</label>
 
                   <input type="text" name="peso" class="form-control" id="peso" autocomplete="off">
 
@@ -527,7 +545,7 @@ DATATABLE HISTÓRIAS ClÍNICAS
 
                 </div>
 
-              </div>
+             </div>
 
 
               <div class="col-md-5">
@@ -563,6 +581,7 @@ DATATABLE HISTÓRIAS ClÍNICAS
               </div>
         
 
+
                     
          <div class="col-md-6">
 
@@ -576,7 +595,7 @@ DATATABLE HISTÓRIAS ClÍNICAS
 
           </div>
 
-          <input type="hidden" class="form-control" name="ultimo_celo" id="fecha_nacimiento" value="{{ date_format(date_create($id_cliente->fecha_nacimiento), 'Y-m-d') }}" required />
+          <input type="hidden" class="form-control" name="ultimo_celo" id="ultimo_celo" required />
 
 
          </div>
@@ -716,16 +735,49 @@ DATATABLE HISTÓRIAS ClÍNICAS
        
 
       </div>
-
-
+     
 
   </div>
 
-</div>
+  </div>
+
+    <div class="col-lg-5">
+
+      <div class="form-group">
+
+        <label for="veterinario remitente" class="control-label font-weight-normal">Veterinario remitente</label>
+
+        <input type="text" name="veterinario_remitente" class="form-control text-capitalize" id="veterinario_remitente" autocomplete="off">
+
+        <div class="alert-message" id="veterinarioRemitenteError"></div>
+
+      </div>
+
+    </div>
 
 
-    
 
+  
+      <div class="col-lg-5">
+
+        <div class="form-group">
+
+          <label for="agresividad" class="control-label font-weight-normal">Agresividad</label>
+
+
+          <input type="range" name="agresividad" class="form-control" id="agresividad"  min="0" max="5" step="1" value="0"  oninput="num.value = this.value"> 
+          
+          <output id="num">0</output>
+
+          
+          
+
+          <div class="alert-message" id="agresividadError"></div>
+
+        </div>
+
+      </div>        
+ 
  </div>
 
 
@@ -2189,7 +2241,6 @@ $('input[type="checkbox"]').click(function () {
 
 
 
-
   <!-- ========================================
 
 LIMPIAR SELECT 2
@@ -2216,32 +2267,65 @@ CALCULO DE LA EDAD DEL CLIENTE
 
   <script>
     $('#fecha_nacimiento1').blur(function() {
-      document.getElementById('edad1').value = 0;
+      document.getElementById('anos').value = 0;
 
-      var fecha = new Date(document.getElementById('fecha_nacimiento1').value);
-      var hoy = new Date();
-      var edad = Math.floor((hoy - fecha) / (365.25 * 24 * 60 * 60 * 1000));
-      document.getElementById('edad1').value = edad + ' ' + 'Años';
+      var birthDay  = new Date(document.getElementById('fecha_nacimiento1').value);
+    
+      var DOB = new Date(birthDay);
+      var today = new Date();
+      var age = today.getTime() - DOB.getTime();
+      var elapsed = new Date(age);
+      var year = elapsed.getYear()-70;
+      var month = elapsed.getMonth();
+      var day = elapsed.getDay();
+
+
+
+      document.getElementById('anos').value = year;
       document.getElementById('fecha_nacimiento').value = document.getElementById('fecha_nacimiento1').value;
+      document.getElementById('meses').value = month;
+     
     });
   </script>
 
 
+
+  <!-- =======================================
+
+ASIGNAR FECHA DEL ULTIMO CELO
+
+=========================================== -->
 
 
 
   <script>
-    $('#fecha_nacimiento1').focus(function() {
-      document.getElementById('edad').value = '';
-
-      var fecha = new Date(document.getElementById('fecha_nacimiento1').value);
-      var hoy = new Date();
-      var edad = Math.floor((hoy - fecha) / (365.25 * 24 * 60 * 60 * 1000));
-      document.getElementById('edad').value = edad + ' ' + 'Años';
-      document.getElementById('fecha_nacimiento').value = document.getElementById('fecha_nacimiento1').value;
+    $('#ultimo_celo1').blur(function() {
+    
+      document.getElementById('ultimo_celo').value = document.getElementById('ultimo_celo1').value;
     });
   </script>
 
+
+
+
+  <!-- =======================================
+
+ ASIGNAR PESO DE MASCOTA
+
+=========================================== -->
+
+
+
+<script>
+    $('#peso').blur(function() {
+    
+  var suffix = 'Kg';
+  var val = $(this).val().replace(suffix, '');
+  var final =  val + suffix;
+  $(this).val(final);
+
+    });
+  </script>
 
 
 
