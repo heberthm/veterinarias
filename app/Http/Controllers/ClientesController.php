@@ -171,14 +171,21 @@ class ClientesController extends Controller
     public function verificarCliente(Request $request)
     {
         if ($request->get('cedula')) {
+          
             $cedula = $request->get('cedula');
+          
             $data = DB::table("clientes")
-                ->where('cedula', $cedula)
+             
+            ->where('cedula', $cedula)
 
                 ->count();
+
             if ($data > 0) {
+
                 echo 'unique';
+
             } else {
+                
                 echo 'not_unique';
             }
         }

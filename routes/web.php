@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Select2SearchController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\mascotaController;
+use App\Http\Controllers\atencion_mascotaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\historiasClinicasController;
@@ -80,9 +81,26 @@ Route::delete('eliminar_usuario/{id}', [App\Http\Controllers\Auth\RegisterContro
 
 // ======================================================
 
-Route::get('historia_clinica/{id}', [App\Http\Controllers\mascotaController::class, 'index']);
+Route::get('mascota/{id}', [App\Http\Controllers\mascotaController::class, 'index'])->middleware('can:atencion_mascota')->name('atencion_mascota');
 
 Route::post('/crear_mascota', [App\Http\Controllers\mascotaController::class, 'store'])->name('crear_mascota');
+
+Route::get('/ver_mascota/{id}', [App\Http\Controllers\mascotaController::class, 'show'])->name('ver_mascota');
+
+Route::get('/editar_mascota/{id}', [App\Http\Controllers\mascotaController::class, 'show'])->name('editar_mascota');
+
+Route::get('/ver_mascota/{id}', [App\Http\Controllers\mascotaController::class, 'show']);
+
+
+// ======================================================
+
+//  RUTAS PARA ATENCIÖN MÉDICA MASCOTAS
+
+// ======================================================
+
+
+
+ // Route::get('/atencion_mascota/{id}', [App\Http\Controllers\atencion_mascotaController::class, 'atencion_mascota'])->name('atencion_mascota');
 
 
 

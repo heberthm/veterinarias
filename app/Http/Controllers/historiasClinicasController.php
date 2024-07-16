@@ -33,7 +33,7 @@ class historiasClinicasController extends Controller
               'historias_clinicas.id', 'historias_clinicas.estatura', 'historias_clinicas.peso_inicial', 
               'historias_clinicas.abd_inicial', 'historias_clinicas.agua_inicial', 'historias_clinicas.grasa_inicial', 'historias_clinicas.imc', 
               'historias_clinicas.grasa_viseral', 'historias_clinicas.edad_metabolica', 'historias_clinicas.terapias', 'historias_clinicas.terapias_adicionales',
-              'historias_clinicas.paquete_desintoxicacion', 'historias_clinicas.tipo_lavado', 'historias_clinicas.num_lavado', 'historias_clinicas.dias_lavados',
+              'historias_clinicas.paquete_desintoxicacion', 'historias_clinicas.tipo_lavado', ' historias_clinicas.num_lavado', 'historias_clinicas.dias_lavados',
               'historias_clinicas.profesional', 'historias_clinicas.observaciones','historias_clinicas.created_at')
              
               ->where('clientes.id_cliente',  $id);
@@ -50,13 +50,14 @@ class historiasClinicasController extends Controller
                 ->addColumn('action', function($data) {
     
     
-                    $actionBtn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-target="#modalMostrarHistoriaClinica"  title="Ver datos história clínica" class="fa fa-eye mostrar_historia"></a> 
+                    $actionBtn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-target="#modalMostrarHistoriaClinica"  title="Ver datos história_clínica" class="fa fa-eye gestionMascota"></a> 
                    
-                    <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-target="#modalEditarHistoriaClinica"  title="Editar datos de história clínica" class="fa fa-edit editarHistoria"></a>
+                    <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-target="#modalMostrarMascota"  title="Ver datos história clínica" class="fa fa-eye mostrar_mascota"></a> 
+                   
+                    <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-target="#modalEditarMascota"  title="Editar datos de história clínica" class="fa fa-edit editarHistoria"></a>
    
 
                     <a href="javascript:void(0)" data-toggle="modal"  data-id="'.$data->id.'" title="Eliminar abono" class="fa fa-trash eliminarHistoria"></a>';
-
 
                     
                      

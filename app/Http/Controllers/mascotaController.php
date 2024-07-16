@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ValidarFormularioRequest;
 
+use Yajra\DataTables\Facades\DataTables;
+
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+
 
 use Redirect,Response;
 
 
 use App\Models\mascota;
+
 use App\Models\Cliente;
+
 
 
 
@@ -27,35 +32,54 @@ class mascotaController extends Controller
     public function index($id)
     {
       
+    
+      $user = auth()->user();
                 
         if(request()->ajax()) {
 
           //  $id = $request->id_cliente;
 
-          $id = mascota::select("id", "user_id", "id_cliente", "mascota", "especie", "raza", "fecha_nacimiento","esterilizado")
-            
-          ->where('id', '=', $id)
+       //   $id = mascota::select("id", "user_id", "id_cliente", "mascota", "especie", "raza", "anos","sexo")
 
-          ->where('user_id', Auth::user()->id);
+
+       $id = Cliente::join('mascotas', 'mascotas.id_cliente', '=', 'clientes.id_cliente')
+       ->select('clientes.id_cliente', 'clientes.user_id', 'clientes.cedula', 'clientes.nombre',  'clientes.celular', 'clientes.estado',
+       'clientes.direccion', 'clientes.barrio', 'clientes.email', 'clientes.edad', 'clientes.fecha_nacimiento', 'clientes.municipio',
+       'mascotas.mascota', 'mascotas.id_cliente', 'mascotas.especie', 'mascotas.raza', 'mascotas.anos', 'mascotas.sexo', 'mascotas.created_at')
+
+            
+          ->where('mascotas.id_cliente', '=', $id)
+
+          ->where('clientes.user_id', Auth::user()->id);
 
            return datatables()->of($id)
-       
-           
+ 
+
+                     
                                                                       
             ->addColumn('action', 'atencion')
             ->rawColumns(['action'])
-            ->addColumn('action', function($data) {
+            ->addColumn('action', function($data)  {
+ 
+            
+            if (Auth::user()->id) {
+
+              $actionBtn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-target="#modalGestionMascota"  title="Ver datos de mascota" class="fa fa-list gestionMascota"></a>
+           
+             
+              <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-target="#modalMostrarMascota"  title="Ver datos de mascota" class="fa fa-eye mostrar_mascota"></a> 
+
+              <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-target="#modalEditarMascota"  title="Editar datos de mascota" class="fa fa-edit editarMascota"></a>
 
 
-                $actionBtn = '<a href="/mascota/'.$data->id.'" data-toggle="tooltip"  data-id="'.$data->id.'" title="ver datos mascotas" class=" fa fa-stethoscope cita"></a> 
-               
-                <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" title="Eliminar mascota" class="fa fa-trash deletePost"></a>
-
-                <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" title="Establecer como fallecido" class="fa fa-adjust defuncion"></a>
-                <a href="javascript:void(0)" data-toggle="modal"  data-id="'.$data->id.'" data-target="#modalTraspasarMascota"  title="Traspasar a otro propietario" class="fa fa-exchange traspasar"></a>';
-                
+              <a href="javascript:void(0)" data-toggle="modal"  data-id="'.$data->id.'" title="Eliminar abono" class="fa fa-trash eliminarHistoria"></a>';
+          
+              
+                        
                  
-                return $actionBtn;
+              return $actionBtn;
+
+              }
                
             })
            
@@ -64,11 +88,12 @@ class mascotaController extends Controller
         } 
 
        
-        return view('cliente');
+        return view('cliente', compact('id'));
        // dd($id_cliente);
       
     }
 
+    
 
 
     public function buscarMascota(Request $request)
@@ -174,9 +199,9 @@ class mascotaController extends Controller
           $data->adopcion = ($request->adopcion) ? '1' : '0';
           $data->agresividad = $request->agresividad;
         
+  
           
-            
-          $data->save();
+       $data->save();
 
         } catch (\Exception  $exception) {
             return back()->withError($exception->getMessage())->withInput();
@@ -193,44 +218,15 @@ class mascotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_cliente)
-    {
-         
-     /*
-        
-        if(request()->ajax()) {
-            return datatables()->of(Mascota::select("user_id", "id_cliente", "nombre", "especie", "raza", "edad")
-          //  ->where('id_cliente',  $id_cliente =2)
-
-            ->where('id_cliente','=', $id_cliente)
-
-            ->where('user_id', Auth::user()->id)) 
-                                                            
-            ->addColumn('action', 'atencion')
-            ->rawColumns(['action'])
-            ->addColumn('action', function($data) {
+   
+     public function show($id)
+     {
+       $id_mascota  = mascota::find($id);
+       return response()->json($id_mascota);
+     
+     }
 
 
-                $actionBtn = '<a href="#" data-toggle="tooltip"  data-id="'.$data->id.'" title="editar registro" class=" fa fa-stethoscope cita"></a> 
-               
-                <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" title="Eliminar registro" class="fa fa-trash deletePost"></a>';
-                
-                 
-                return $actionBtn;
-               
-            })
-           
-           
-            ->make(true);
-        } 
-
-       
-        return view('cliente');
-       // dd($id_cliente);
-
-
-       */
-    }
 
     /**
      * Show the form for editing the specified resource.

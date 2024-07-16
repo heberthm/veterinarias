@@ -1,3 +1,4 @@
+<!-- <div hx-boost="true" hx-target="body">  -->
 
 <aside class="main-sidebar sidebar-light-gray elevation-4">
    <!-- Brand Logo -->
@@ -10,6 +11,8 @@
 
    <!-- Sidebar -->
    <div class="sidebar">
+
+  
 
      <!-- Sidebar Menu -->
      <nav class="mt-2">
@@ -33,7 +36,7 @@
 
              <p>
 
-               Clientes
+               Inicio
 
              </p>
 
@@ -42,6 +45,33 @@
            @endcan
 
          </li>
+
+
+       
+
+         <li class="nav-item">
+
+
+         @can('atencion_mascota')
+
+               
+           <a href="{{ url('atencion_mascota') }}" class="nav-link {{ request()->is('atencion_mascota') ? 'active' : '' }}">
+
+
+                  <i class="nav-icon fas fa-paw green"></i>
+
+                  <p>
+
+                    Mascota
+
+                  </p>
+
+                </a>
+ 
+                @endcan
+
+                </li>
+    
 
 
 
@@ -386,5 +416,10 @@
      <!-- /.sidebar-menu -->
    </div>
    <!-- /.sidebar -->
+
+
+
  </aside>
  
+
+ <!-- </div> -->

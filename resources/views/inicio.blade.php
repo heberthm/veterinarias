@@ -142,7 +142,7 @@ BUSCADOR DE CLIENTES - SELECT2
         <div class="card-header">
 
 
-          <h3 class="card-title"><span style="color: #28a745;" class="fas fa-search mr-3"></span>Buscador</h3>
+          <h3 class="card-title"><span style="color: #28a745;" class="fas fa-search mr-3"></span>Buscador de clientes</h3>
 
           <span class="btn-group float-right" id="btn_listadoClientes">
 
@@ -220,9 +220,9 @@ FORMULARIO RECEPCION DE PACIENTES
 
 
 
-          <h3 class="card-title"><span style="color: #28a745;" class="fas fa-list mr-3">
+          <h2 class="card-title"><span style="color: #28a745;" class="fas fa-list mr-3">
 
-            </span> Pacientes que cumplen años el mes de: &nbsp; </h3>
+            </span> Pacientes que cumplen años el mes de: &nbsp; </h2>
 
           <p><b>{{ now()->translatedFormat('F');  }}</b></p>
 
@@ -1795,6 +1795,7 @@ MOSTRAR SPINNER AL CARGAR PAGINA
 
 ========================================== -->
 
+<!--
 
   <script type="text/javascript">
     $(window).on('load', function() {
@@ -1811,6 +1812,7 @@ MOSTRAR SPINNER AL CARGAR PAGINA
   </script>
 
 
+  -->
 
 
   <!-- =======================================
@@ -2404,12 +2406,16 @@ DATATABLE MOSTRAR LISTADO DE CLIENTES
 
 
   <script type="text/javascript">
+
     $(document).ready(function() {
 
       $.ajaxSetup({
+
         headers: {
+
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
+        
       });
 
 
@@ -2735,15 +2741,10 @@ SELECTBUSCARCLIENTE - LISTA DE ESPERA
 
 
 
-
             $.each(data, function(key, value) {
               $('#buscarEspecie').append('<option value="' + value.especie + '">' + value.especie + '</option>');
 
             });
-
-
-
-
 
 
 
@@ -4345,8 +4346,6 @@ CARGAR DATATABLE JQUERY LISTA DE ESPERA Y  GUARDAR DATOS
 
     });
   </script>
-
-
 
 
 

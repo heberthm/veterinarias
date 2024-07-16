@@ -10,7 +10,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon2.ico') }}">
 
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 
 
     <!-- Spinner loader -->
@@ -113,7 +113,15 @@ ARCHIVOS JS
     <!-- Jquery JSON 2.6 -->
     <script src= 'https://cdnjs.cloudflare.com/ajax/libs/jquery-json/2.6.0/jquery.json.min.js'></script>
 
-    
+        
+    <!-- Htmx 1.9.5 -->
+
+<!--
+
+    <script src="https://unpkg.com/htmx.org@1.9.5"
+    integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
+    crossorigin="anonymous"></script> 
+-->
     
     <!-- Select2 js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.js"></script>
@@ -131,6 +139,7 @@ ARCHIVOS JS
     <script src="https://kit.fontawesome.com/d57c775029.js" crossorigin="anonymous"></script>
 
 
+   
     <!--  tippy js -->
     <script src="https://cdn.jsdelivr.net/npm/tippy.js@6.3.7/dist/tippy.cjs.min.js"></script>
 
@@ -271,7 +280,7 @@ ARCHIVOS JS
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
-    <div class="loader-page"></div>
+ <!--   <div class="loader-page"></div> -->
 
 
     <div class="wrapper">
