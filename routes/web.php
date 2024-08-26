@@ -81,7 +81,7 @@ Route::delete('eliminar_usuario/{id}', [App\Http\Controllers\Auth\RegisterContro
 
 // ======================================================
 
-Route::get('mascota/{id}', [App\Http\Controllers\mascotaController::class, 'index'])->middleware('can:atencion_mascota')->name('atencion_mascota');
+Route::get('/mascotas/{id}', [App\Http\Controllers\mascotaController::class, 'index'])->name('mascotas');
 
 Route::post('/crear_mascota', [App\Http\Controllers\mascotaController::class, 'store'])->name('crear_mascota');
 

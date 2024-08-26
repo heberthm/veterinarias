@@ -13,6 +13,10 @@ class mascota extends Model
                            'factor_DEA', 'adopcion', 'agresividad', 'preexistecias'];
 
 
+                           public function mascota(){
+                            return $this->belongsTo(mascota::class);
+                        }
+
 }
 
 

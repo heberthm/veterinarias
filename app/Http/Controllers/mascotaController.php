@@ -42,29 +42,29 @@ class mascotaController extends Controller
        //   $id = mascota::select("id", "user_id", "id_cliente", "mascota", "especie", "raza", "anos","sexo")
 
 
-       $id = Cliente::join('mascotas', 'mascotas.id_cliente', '=', 'clientes.id_cliente')
+       $id_clientes = cliente::join('mascotas', 'mascotas.id_cliente', '=', 'clientes.id_cliente')
        ->select('clientes.id_cliente', 'clientes.user_id', 'clientes.cedula', 'clientes.nombre',  'clientes.celular', 'clientes.estado',
        'clientes.direccion', 'clientes.barrio', 'clientes.email', 'clientes.edad', 'clientes.fecha_nacimiento', 'clientes.municipio',
-       'mascotas.mascota', 'mascotas.id_cliente', 'mascotas.especie', 'mascotas.raza', 'mascotas.anos', 'mascotas.sexo', 'mascotas.created_at')
-
+       'mascotas.mascota', 'mascotas.id', 'mascotas.id_cliente', 'mascotas.especie', 'mascotas.raza', 'mascotas.anos', 'mascotas.sexo', 'mascotas.created_at')
+ 
             
-          ->where('mascotas.id_cliente', '=', $id)
+          ->where('clientes.id_cliente', '=', $id_clientes)
 
           ->where('clientes.user_id', Auth::user()->id);
 
            return datatables()->of($id)
- 
 
-                     
+      
+               
                                                                       
             ->addColumn('action', 'atencion')
             ->rawColumns(['action'])
             ->addColumn('action', function($data)  {
  
             
-            if (Auth::user()->id) {
+        
 
-              $actionBtn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-target="#modalGestionMascota"  title="Ver datos de mascota" class="fa fa-list gestionMascota"></a>
+              $actionBtn = '<a href="/mascotas/'.$data->id.'"    title="Ver datos de mascota" class="fa fa-list "></a>
            
              
               <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-target="#modalMostrarMascota"  title="Ver datos de mascota" class="fa fa-eye mostrar_mascota"></a> 
@@ -79,7 +79,7 @@ class mascotaController extends Controller
                  
               return $actionBtn;
 
-              }
+            
                
             })
            
@@ -88,7 +88,7 @@ class mascotaController extends Controller
         } 
 
        
-        return view('cliente', compact('id'));
+        return view('mascotas', compact('id_clientes'));
        // dd($id_cliente);
       
     }

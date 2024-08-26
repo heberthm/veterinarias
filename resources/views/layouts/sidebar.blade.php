@@ -52,10 +52,10 @@
          <li class="nav-item">
 
 
-         @can('atencion_mascota')
+         @can('mascotas')
 
                
-           <a href="{{ url('atencion_mascota') }}" class="nav-link {{ request()->is('atencion_mascota') ? 'active' : '' }}">
+           <a href="{{ url('mascotas') }}" class="nav-link {{ request()->is('mascotas') ? 'active' : '' }}">
 
 
                   <i class="nav-icon fas fa-paw green"></i>

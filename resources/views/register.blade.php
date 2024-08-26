@@ -516,26 +516,39 @@ CONFIRMAR CLAVE - GUARDAR
 
 <script type="text/javascript">
   $(document).ready(function() {
+
     $("#repetir_clave").on('keyup', function() {
 
 
       var user_pass = $("#clave").val();
+
       var user_pass2 = $("#repetir_clave").val();
 
       if (user_pass.length == 0) {
+
         $("#CheckPasswordMatch").html("El campo es oligatorio.").css("color", "red");
+
         $("#agregar_usuario").attr('disabled', true);
+
       } else if (user_pass == user_pass2) {
+
         $("#agregar_usuario").attr('disabled', false);
+
         $("#CheckPasswordMatch").html("Clave correcta.").css("color", "green");
 
       } else {
+
         $("#agregar_usuario").attr('disabled', true);
+
         $("#CheckPasswordMatch").html("La clave no coincide !").css("color", "red");
+
       }
 
     });
+
   });
+
+  
 </script>
 
 
