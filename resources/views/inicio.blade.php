@@ -1,32 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-<style>
-
- .main-content {
-            padding: 20px;
+    <style>
+        .main-content {
+            padding: 10px;
         }
+
         .card-dashboard {
             border-left: 4px solid;
             transition: transform 0.3s;
         }
+
         .card-dashboard:hover {
             transform: translateY(-5px);
         }
+
         .card-dashboard.primary {
             border-left-color: #0d6efd;
         }
+
         .card-dashboard.success {
             border-left-color: #198754;
         }
+
         .card-dashboard.warning {
             border-left-color: #ffc107;
         }
+
         .card-dashboard.danger {
             border-left-color: #dc3545;
         }
+
         .card-dashboard .card-icon {
             font-size: 2rem;
             opacity: 0.8;
@@ -36,16 +40,16 @@
 
 
 
-<div class="container">
-    
-            <!-- Contenido principal -->
+    <div class="container">
+
+        <!-- Contenido principal -->
         <div class="col-md-12 main-content">
             <div class="tab-content">
 
                 <!-- Dashboard -->
                 <div class="tab-pane fade show active" id="dashboard">
                     <h2 class="mb-4">Dashboard</h2>
-                    
+
                     <div class="row">
                         <div class="col-md-3 mb-4">
                             <div class="card card-dashboard primary">
@@ -201,6 +205,6 @@
             </div>
         </div>
     </div>
-       
-</div>
+
+    </div>
 @endsection
