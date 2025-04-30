@@ -1,5 +1,8 @@
 @extends('adminlte::page')
 
+
+
+
 {{-- Extend and customize the browser title --}}
 
 @section('title')
@@ -40,12 +43,15 @@
     </div>
 
     <strong>
-        Copyright &copy; 2022 - <?php echo date('Y'); ?> <a href="#">hemTech</a>. Todos los derechso reservados.
+        Copyright &copy; 2022 - <?php echo date('Y'); ?> <a href="#">hemTech</a>. Todos los derechos reservados.
 
     </strong>
 @stop
 
 {{-- Add common Javascript/Jquery code --}}
+
+
+
 
 @push('js')
     <script>
@@ -61,12 +67,13 @@
     <style type="text/css">
         {{-- You can add AdminLTE customizations here --}}
         /*
-                                                    .card-header {
-                                                        border-bottom: none;
-                                                    }
-                                                    .card-title {
-                                                        font-weight: 600;
-                                                    }
-                                                    */
+                .card-header {
+                    border-bottom: none;
+                }
+                .card-title {
+                    font-weight: 600;
+                }
+                */
     </style>
 @endpush
+

@@ -244,6 +244,7 @@ return [
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
+    
     /*
     |--------------------------------------------------------------------------
     | URLs
@@ -257,7 +258,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'inicio',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -305,6 +306,7 @@ return [
           //  'text' => 'search',
           //  'topnav_right' => true,
         ],
+      
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => false,
@@ -313,21 +315,26 @@ return [
         [
             'type' => 'darkmode-widget',
             'topnav_right' => true,     // Or "topnav => true" to place on the left.
-        ],
+            'icon_disabled' => 'fas fa-moon', // Optional: Set for light mode [1, 5, 10]
+            'logo_title'=> 'modo oscuro',
+            'icon_enabled' => 'fas fa-sun', // Set to "fa-sun" for dark mode [1, 5, 10]
+            'logo_title' => 'modo claro',
+
+        ],   
 
         [
             'type' => 'navbar-notification',
             'id' => 'my-notification',                // An ID attribute (required).
             'icon' => 'fas fa-bell',                  // A font awesome icon (required).
-            'icon_color' => 'info',                // The initial icon color (optional).
+            'icon_color' => 'info',                   // The initial icon color (optional).
             'label' => 0,                             // The initial label for the badge (optional).
             'label_color' => 'danger',                // The initial badge color (optional).
-            'url' => 'notifications/show',            // The url to access all notifications/elements (required).
+            'url' => '#',                             // The url to access all notifications/elements (required).
             'topnav_right' => true,                   // Or "topnav => true" to place on the left (required).
             'dropdown_mode' => true,                  // Enables the dropdown mode (optional).
             'dropdown_flabel' => 'All notifications', // The label for the dropdown footer link (optional).
             'update_cfg' => [
-                'url' => 'notifications/get',         // The url to periodically fetch new data (optional).
+                'url' => '#',                         // The url to periodically fetch new data (optional).
                 'period' => 30,                       // The update period for get new data (in seconds, optional).
             ],
         ],  
@@ -387,11 +394,25 @@ return [
             'text' => 'Hospitalización',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-medkit',
+            'submenu' => [
+                [
+                    'text' => 'Internaciones',
+                    'icon' => 'fas fa-fw fa-check-circle-o',
+                    'url' => '#',
+                ],
+                          
+                [
+                    'text' => 'procedimientos',
+                    'icon' => 'fas fa-fw fa-fa-check-circle-o',
+                    'url' => '#',
+                ],
+                
+            ]
         ],
         [
             'text' => 'Citas y recordatorios',
-            'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-calendar',
+            'url' => 'citas_medicas',
         ],       
 
         [
@@ -436,14 +457,14 @@ return [
             
                 'text' => 'Compras',
                 'url' => 'admin/settings',
-                'icon' => 'fas fa-fw fa-shopping-basket',
+                'icon' => 'fas fa-fw fa-credit-card',
             
         ],
         [
             
                 'text' => 'Ventas y stock',
                 'url' => 'admin/settings',
-                'icon' => 'fas fa-fw fa-shopping-basket',
+                'icon' => 'fas fa-fw fa-shopping-cart',
 
                 'submenu' => [
                     [
@@ -480,23 +501,23 @@ return [
         ],
         [
             'text' => 'Herraimentas',
-            'icon' => 'fas fa-fw fa-fa-gear',
+            'icon' => 'fas fa-fw fa-wrench',
             'url' => '#',
         ],
 
         [
             'text' => 'Informes',
-            'icon' => 'fas fa-fw fa-fa-navicon',
+            'icon' => 'fa fa-fw fa-chart-bar',
             'url' => '#',
         ],
         [
             'text' => 'Registros',
-            'icon' => 'fas fa-fw fa-fa-key',
+            'icon' => 'fas fa-fw fa-key',
             'url' => '#',
         ],
         [
             'text' => 'Configuración',
-            'icon' => 'fas fa-fw fa-fa-cog',
+            'icon' => 'fas fa-fw fa-cog',
             'url' => '#',
         ],
     ],
@@ -606,6 +627,33 @@ return [
                 ],
             ],
         ],
+
+        'DateRangePicker' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/moment.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/daterangepicker/daterangepicker.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/daterangepicker/daterangepicker.css',
+                ],
+            ],
+        ],
+
+
+
+
+
+
     ],
 
     /*

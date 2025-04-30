@@ -109,7 +109,7 @@
                         <div class="col-md-6 mb-4">
                             <div class="card h-100">
                                 <div class="card-header">
-                                    Próximas Citas
+                                    <i class="fa fa-calendar" aria-hidden="true"></i> Próximas Citas
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -156,7 +156,7 @@
                         <div class="col-md-6 mb-4">
                             <div class="card h-100">
                                 <div class="card-header">
-                                    Productos con Stock Bajo
+                                    <i class="fa fa-arrow-circle-down" aria-hidden="true"></i> Productos con Stock Bajo
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
